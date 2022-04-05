@@ -1,2 +1,4 @@
 .ipynb_checkpoints
 models
+.idea
+__pycache__
