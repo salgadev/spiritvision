@@ -4,8 +4,8 @@ import cv2
 
 from helpers import *
 
-processed_path = os.path.join(get_root_dir(), "data_processed\\")
-data_path = os.path.join(get_root_dir(), "data\\")
+processed_path = os.path.join(get_root_dir(), "data")
+data_path = os.path.join(get_root_dir(), "data_raw")
 
 
 def crop_background(path):
@@ -17,22 +17,28 @@ def crop_background(path):
     cv2.imwrite("otsu.png", thresholded)
     x, y, w, h = cv2.boundingRect(thresholded)  # bounding box
     foreground = img[y:y + h, x:x + w]
-    # TODO: check that it writes the final image into the new path
-    cv2.imwrite(f"{processed_path}\\{target_folder}\\{fname}", foreground)
+
+    label_folder = f"{processed_path}\\{target_folder}"
+    if not os.path.isdir(label_folder):
+        os.mkdir(label_folder)
+
+    target_path = f"{label_folder}\\cropped-{fname}"
+    if not os.path.isfile(target_path):
+        print(f"Saving {target_path}")
+        cv2.imwrite(target_path, foreground)
+    else:
+        print(f"{target_path} already exists!")
 
 
 def main():
     labels = os.listdir(data_path)
-    # print(data_path)
-    # print(labels)
+
     for label in labels:
         label_path = os.path.join(data_path, label)
-        print(label_path)
-        for fname in os.listdir(label_path):
-            f_path = os.path.join(label_path, fname)
-            print(f_path)
 
-    # crop_background(os.path.join(data_path, "\\",labels[0]))
+        for fname in os.listdir(label_path):
+            crop_background(os.path.join(label_path, fname))
+
     pass
 
 
