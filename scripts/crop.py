@@ -1,7 +1,6 @@
 import os
 
 import cv2
-
 from helpers import *
 
 processed_path = os.path.join(get_root_dir(), "data")
