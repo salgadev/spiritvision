@@ -1,0 +1,8 @@
+{
+    "VoilaConfiguration": {
+        "enable_nbextensions": true,
+        "language_kernel_mapping": {
+            "python": "python3"
+        }
+    }
+}
