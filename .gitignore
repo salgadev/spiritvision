@@ -2,5 +2,5 @@
 models
 .idea
 __pycache__
-data_drafts/zips
+data_drafts/*
 notebooks/drafts/*
