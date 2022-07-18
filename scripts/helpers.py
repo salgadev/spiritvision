@@ -2,9 +2,13 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+
 def get_root_dir():
+    """
+    The 'scripts' folder is hardcoded since the root is expected to be its parent
+    """
     current_dir = Path(__file__)
-    return [p for p in current_dir.parents if p.parts[-1] == 'mezcal'][0]
+    return [p for p in current_dir.parents if p.parts[-1] == 'scripts'][0].parent
 
 
 def get_data_dir():
