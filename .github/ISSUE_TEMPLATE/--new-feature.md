@@ -28,4 +28,4 @@ Thanks!
 
 .
 
-*Template taken from [SSWConsulting/SSW.Rules](https://github.com/SSWConsulting/SSW.Rules/blob/main/.github/ISSUE_TEMPLATE/0-feature.md)*
+*Templates inspired by [SSWConsulting/SSW.Rules](https://github.com/SSWConsulting/SSW.Rules/blob/main/.github/ISSUE_TEMPLATE)*

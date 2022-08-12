@@ -32,3 +32,6 @@ Hi
 <!-- If applicable, add screenshots to help explain your problem. -->
 
 Thanks!
+
+
+*Templates inspired by [SSWConsulting/SSW.Rules](https://github.com/SSWConsulting/SSW.Rules/blob/main/.github/ISSUE_TEMPLATE)*

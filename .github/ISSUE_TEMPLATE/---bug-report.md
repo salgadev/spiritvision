@@ -7,6 +7,13 @@ assignees: ''
 
 ---
 
+<!-- These comments automatically delete -->
+<!-- **Tip:** Delete parts that are not relevant -->
+<!-- Next to Cc:, @ mention users who should be in the loop -->
+Cc:
+<!-- add intended user next to **Hi** -->
+Hi 
+
 ### Describe the Bug
 <!-- A clear and concise description of what the bug is. -->
 
@@ -37,3 +44,6 @@ Steps to reproduce the behavior:
 
 
 Thanks!
+
+
+*Templates inspired by [SSWConsulting/SSW.Rules](https://github.com/SSWConsulting/SSW.Rules/blob/main/.github/ISSUE_TEMPLATE)*

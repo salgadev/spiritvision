@@ -7,6 +7,13 @@ assignees: ''
 
 ---
 
+<!-- These comments automatically delete -->
+<!-- **Tip:** Delete parts that are not relevant -->
+<!-- Next to Cc:, @ mention users who should be in the loop -->
+Cc:
+<!-- add intended user next to **Hi** -->
+Hi 
+
 ### Pain
 <!-- Explain the pain you are experiencing -->
 
@@ -25,3 +32,6 @@ assignees: ''
 <!-- If applicable, add screenshots to help explain your problem. -->
 
 Thanks!
+
+
+*Templates inspired by [SSWConsulting/SSW.Rules](https://github.com/SSWConsulting/SSW.Rules/blob/main/.github/ISSUE_TEMPLATE)*
