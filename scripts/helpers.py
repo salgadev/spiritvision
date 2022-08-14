@@ -2,6 +2,9 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+from fastai.vision.widgets import *
+from fastbook import *
+
 
 def get_root_dir():
     """
@@ -30,3 +33,14 @@ def save_model(learner, title):
 
 def get_resnet18_recipe():
     return os.path.join(get_root_dir(), "recipes", "resnet-18-original.md")
+
+
+def make_data_loader(data_path, batch_size):
+    block = DataBlock(blocks=(ImageBlock, CategoryBlock),
+                      get_items=get_image_files,
+                      splitter=RandomSplitter(0.2),
+                      get_y=parent_label,
+                      item_tfms=RandomResizedCrop(460),
+                      batch_tfms=[*aug_transforms(size=224, max_warp=0), Normalize.from_stats(*imagenet_stats)])
+
+    return block.dataloaders(data_path, bs=batch_size)
