@@ -6,19 +6,16 @@ import os
 import datetime
 from helpers import *
 
-# TOO SLOW ON PYCHARM FOR SOME REASON
-
 
 def main():
     # batch size of 9 because of small dataset
     data_loader = make_data_loader(get_data_dir(), batch_size=9)
 
-    learn = resnet_learner(data_loader, 34)
+    arch = 34
+    learn = resnet_learner(data_loader, arch)
     learn.fine_tune(10)
 
-    save_to_model_folder(learn, "resnet34_model.pth")
-
-    pass
+    save_to_model_folder(learn, f"resnet{arch}_model.pth")
 
 
 def resnet_learner(data_loader, architecture=34):
