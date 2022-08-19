@@ -2,6 +2,10 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+from fastai.metrics import accuracy
+from fastai.vision import models
+from fastai.vision.learner import vision_learner
+
 from fastai.vision.widgets import *
 from fastbook import *
 
@@ -44,3 +48,12 @@ def make_data_loader(data_path, batch_size):
                       batch_tfms=[*aug_transforms(size=224, max_warp=0), Normalize.from_stats(*imagenet_stats)])
 
     return block.dataloaders(data_path, bs=batch_size)
+
+
+def resnet_learner(data_loader, architecture=34):
+    if architecture == 34:
+        return vision_learner(data_loader, models.resnet34, metrics=accuracy)
+    elif architecture == 50:
+        return vision_learner(data_loader, models.resnet50, metrics=accuracy)
+    else:
+        return vision_learner(data_loader, models.resnet18, metrics=accuracy)
