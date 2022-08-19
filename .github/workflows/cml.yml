@@ -1,4 +1,4 @@
-name: your-workflow-name
+name: train
 on: [push]
 jobs:
   run:
