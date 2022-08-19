@@ -16,11 +16,11 @@ def main(arguments):
     learn.save(save_path)
 
     interp = ClassificationInterpretation.from_learner(learn)
-    confusion = interp.plot_confusion_matrix()
-    confusion.savefig('plot_confusion_matrix.png', dpi=120)
+    plot = interp.plot_confusion_matrix()
+    plt.savefig('..\\plot_confusion_matrix.png', dpi=120)
 
-    results = learn.show_results()
-    results.savefig('results.png', dpi=120)
+    plot = learn.show_results()
+    plt.savefig('..\\results.png', dpi=120)
 
 
 if __name__ == "__main__":
