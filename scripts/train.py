@@ -15,6 +15,13 @@ def main(arguments):
     save_path = os.path.join(get_models_dir(), f"resnet{arch}_model")
     learn.save(save_path)
 
+    interp = ClassificationInterpretation.from_learner(learn)
+    plot = interp.plot_confusion_matrix()
+    plt.savefig('..\\plot_confusion_matrix.png', dpi=120)
+
+    plot = learn.show_results()
+    plt.savefig('..\\results.png', dpi=120)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
