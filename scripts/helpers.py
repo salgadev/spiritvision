@@ -22,7 +22,7 @@ def get_models_dir():
     return os.path.join(get_root_dir(), "models")
 
 
-def save_model(learner, title):
+def save_to_model_folder(learner, title):
     now = datetime.now()
     timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
 

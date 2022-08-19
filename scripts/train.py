@@ -1,4 +1,3 @@
-import fastbook
 import fastai
 from fastai.vision.widgets import *
 from fastbook import *
@@ -11,26 +10,24 @@ from helpers import *
 
 
 def main():
-    path = Path(get_data_dir())
-    files = get_image_files(path)
-    print(files)
-
-    mezcal = DataBlock(blocks=(ImageBlock, CategoryBlock),
-                       get_items=get_image_files,
-                       splitter=RandomSplitter(0.2),
-                       get_y=parent_label,
-                       item_tfms=RandomResizedCrop(460),
-                       batch_tfms=[*aug_transforms(size=224, max_warp=0), Normalize.from_stats(*imagenet_stats)])
-
     # batch size of 9 because of small dataset
-    dls = mezcal.dataloaders(path, bs=9)
-    print(f"The classes are: {dls.vocab}")
+    data_loader = make_data_loader(get_data_dir(), batch_size=9)
 
-    learn = cnn_learner(dls, resnet34, pretrained=True, metrics=error_rate).to_fp16()
+    learn = resnet_learner(data_loader, 34)
     learn.fine_tune(10)
-    model = save_model(learn, "apr5")
+
+    save_to_model_folder(learn, "resnet34_model.pth")
 
     pass
+
+
+def resnet_learner(data_loader, architecture=34):
+    if architecture == 34:
+        return vision_learner(data_loader, models.resnet34, metrics=accuracy)
+    elif architecture == 50:
+        return vision_learner(data_loader, models.resnet50, metrics=accuracy)
+    else:
+        return vision_learner(data_loader, models.resnet18, metrics=accuracy)
 
 
 if __name__ == "__main__":
