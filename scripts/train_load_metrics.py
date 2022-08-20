@@ -20,7 +20,7 @@ def main(arguments):
     cm = interp.confusion_matrix()
     cm_png_path = os.path.join(get_root_dir(), "confusion_matrix.png")
 
-    save_confusion_matrix_plot(cm, data_loader.vocab, cm_png_path)
+    save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
 
 
 def save_confusion_matrix_plot(confusion_matrix, labels, path):
