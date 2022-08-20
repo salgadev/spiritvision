@@ -5,3 +5,4 @@ __pycache__
 data_drafts/*
 notebooks/drafts/*
 /data_drafts/
+/notebooks/drafts/
