@@ -16,11 +16,10 @@ def main(arguments):
     learn.save(save_path)
 
     interp = ClassificationInterpretation.from_learner(learn)
-    plot = interp.plot_confusion_matrix()
-    plt.savefig('..\\plot_confusion_matrix.png', dpi=120)
+    cm = interp.confusion_matrix()
+    cm_png_path = os.path.join(get_root_dir(), "confusion_matrix.png")
 
-    plot = learn.show_results()
-    plt.savefig('..\\results.png', dpi=120)
+    save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
 
 
 if __name__ == "__main__":
