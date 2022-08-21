@@ -20,6 +20,6 @@ jobs:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |                
           echo "## Data viz" >> report.md
-          cml-publish plot_confusion_matrix.png --md >> report.md
+          cml-publish confusion_matrix.png --md >> report.md
           
           cml send-comment report.md
