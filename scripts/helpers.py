@@ -8,6 +8,7 @@ from fastai.vision.learner import vision_learner
 
 from fastai.vision.widgets import *
 from fastbook import *
+from sklearn.metrics import ConfusionMatrixDisplay
 
 
 def get_root_dir():
