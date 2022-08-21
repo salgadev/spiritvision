@@ -13,6 +13,7 @@ jobs:
       - name: Test Deployment
         run: |
           # This is a comment
+          choco install chromium
           pip install -r requirements.txt
           voila app.ipynb
     
