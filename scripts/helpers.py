@@ -57,3 +57,18 @@ def resnet_learner(data_loader, architecture=34):
         return vision_learner(data_loader, models.resnet50, metrics=accuracy)
     else:
         return vision_learner(data_loader, models.resnet18, metrics=accuracy)
+
+
+def save_confusion_matrix_plot(confusion_matrix, labels, path):
+    disp = ConfusionMatrixDisplay(confusion_matrix=confusion_matrix, display_labels=labels)
+    disp.plot(cmap=plt.cm.Blues, values_format='g')
+
+    plt.title("Confusion Matrix")
+    plt.xticks(rotation=90)
+    plt.tight_layout()
+    plt.ylabel('Actual')
+    plt.xlabel('Predicted')
+    plt.grid(False)
+
+    plt.imshow(confusion_matrix, interpolation='nearest', cmap="Blues")
+    plt.savefig(path, dpi=120)
