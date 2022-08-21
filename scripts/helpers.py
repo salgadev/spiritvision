@@ -23,6 +23,10 @@ def get_data_dir():
     return os.path.join(get_root_dir(), "data")
 
 
+def get_processed_data_dir():
+    return os.path.join(get_root_dir(), "data", "processed")
+
+
 def get_models_dir():
     return os.path.join(get_root_dir(), "models")
 
