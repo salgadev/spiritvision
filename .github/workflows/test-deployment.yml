@@ -1,0 +1,18 @@
+name: test-deployment
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # optionally use a convenient Ubuntu LTS + DVC + CML image
+    # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v2
+      #   with:
+      #     python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - name: Test Deployment
+        run: |
+          # This is a comment
+          pip install -r requirements.txt
+          voila app.ipynb
+    
