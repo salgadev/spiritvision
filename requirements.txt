@@ -2,4 +2,5 @@ scikit-learn~=1.1.2
 fastbook~=0.0.28
 fastai~=2.7.9
 ipywidgets
+jinja2<3.1.0
 voila
