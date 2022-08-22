@@ -14,12 +14,12 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
-          pip freeze >> requirements.txt
+          pip freeze >> requirements.txt          
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |                
           echo "## Current Requirements" >> report.md
-          cml-publish requirements.txt --md >> report.md
+          cat requirements.txt >> report.md
           
           cml send-comment report.md
