@@ -1,0 +1,25 @@
+name: update-requirements
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # optionally use a convenient Ubuntu LTS + DVC + CML image
+    # container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v2
+      #   with:
+      #     python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - name: Install and freeze requirements
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          pip freeze >> requirements.txt
+      - name: Write CML report
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |                
+          echo "## Current Requirements" >> report.md
+          cml-publish requirements.txt --md >> report.md
+          
+          cml send-comment report.md
