@@ -4,3 +4,4 @@ jinja2~=3.0.3
 fastbook~=0.0.28
 fastai~=2.7.9
 scikit-learn~=1.0.2
+jupyter
