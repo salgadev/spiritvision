@@ -31,6 +31,10 @@ def get_models_dir():
     return os.path.join(get_root_dir(), "models")
 
 
+def get_scripts_dir():
+    return os.path.join(get_root_dir(), "scripts")
+
+
 def save_to_model_folder(learner, title):
     now = datetime.now()
     timestamp = str(now.strftime("%Y%m%d_%H-%M-%S"))
@@ -38,10 +42,6 @@ def save_to_model_folder(learner, title):
     fname = f'{title}-{timestamp}'
     learner.save(os.path.join(get_models_dir(), fname))
     return fname
-
-
-def get_resnet18_recipe():
-    return os.path.join(get_root_dir(), "recipes", "resnet-18-original.md")
 
 
 def make_data_loader(data_path, batch_size):
