@@ -17,7 +17,7 @@ def main(arguments):
 
     interp = ClassificationInterpretation.from_learner(learn)
     cm = interp.confusion_matrix()
-    cm_png_path = os.path.join(get_root_dir(), "confusion_matrix.png")
+    cm_png_path = os.path.join(get_root_dir(), f"confusion_matrix_ResNet{arch}.png")
 
     save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
 
