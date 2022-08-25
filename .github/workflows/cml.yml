@@ -1,4 +1,4 @@
-name: train-resnet18
+name: train-models
 on: [push]
 jobs:
   run:
@@ -14,12 +14,17 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
-          python scripts/train.py --arch 18
+          for arch in {18 34 50}; do
+            python scripts/train.py --arch $arch;
+            done
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |                
           echo "## Data viz" >> report.md
-          cml-publish confusion_matrix.png --md >> report.md
+          for arch in {18 34 50}; do
+            echo "### ResNet$arch" >> report.md
+            cml-publish confusion_matrix_ResNet$arch.png --md >> report.md
+          done
           
           cml send-comment report.md
