@@ -1,39 +1,29 @@
-# all imports
-
 from helpers import *
 import argparse
-
-import sys
-import os
-sys.path.insert(0, os.path.abspath('..'))
-sys.path.insert(0, os.path.abspath('..\\scripts'))
 
 from fastai.vision.widgets import *
 from fastbook import *
 from helpers import *
 
 import torch
-import torchvision
 from torch.utils.mobile_optimizer import optimize_for_mobile
+
 
 def main(arguments):
     arch = int(arguments.arch)
 
-
-    data_loader = make_data_loader(get_data_dir(), batch_size = 9)
-
-    arch = 18
+    data_loader = make_data_loader(get_data_dir(), batch_size=9)
     learn = resnet_learner(data_loader, arch)
 
     load_path = os.path.join(get_models_dir(), f"resnet{arch}_model")
     learn.load(load_path)
 
-    quantized = nn.Sequential(learn.model,nn.Softmax()).to('cpu')
+    quantized = nn.Sequential(learn.model, nn.Softmax()).to('cpu')
     quantized.eval()
 
     model_int8 = torch.quantization.quantize_dynamic(quantized,
-                                                    {torch.nn.Sequential},
-                                                    dtype=torch.qint8)
+                                                     {torch.nn.Sequential},
+                                                     dtype=torch.qint8)
 
     dummy_input = torch.rand(1, 3, 224, 224)
     traced_script_module = torch.jit.trace(model_int8, dummy_input)
