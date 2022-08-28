@@ -3,8 +3,8 @@ import os
 import cv2
 from helpers import *
 
-processed_path = os.path.join(get_root_dir(), "data")
-data_path = os.path.join(get_root_dir(), "data_raw")
+processed_path = get_processed_data_dir()
+data_path = get_raw_data_dir()
 
 
 def crop_background(path):
