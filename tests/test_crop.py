@@ -3,9 +3,10 @@ import os
 import cv2
 import pytest
 
-from helpers import *
-from crop import *
+import crop
+import helpers
 
+# TODO: more important Make a pyproject.toml
 
 # TODO: test cases
 # no images
@@ -18,8 +19,8 @@ def test_path_is_not_an_image():
     returned parent folder is valid
     """
     with pytest.raises(TypeError):
-        test_path = os.path.join(get_scripts_dir(), "crop.py")
-        get_folder_and_filename(test_path)
+        test_path = os.path.join(helpers.get_scripts_dir(), "crop.py")
+        crop.get_folder_and_filename(test_path)
     return
 
 
