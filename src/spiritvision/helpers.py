@@ -13,10 +13,10 @@ from sklearn.metrics import ConfusionMatrixDisplay
 
 def get_root_dir():
     """
-    The 'scripts' folder is hardcoded since the root is expected to be its parent
+    The 'spiritvision' folder is hardcoded since the root is expected to be its parent
     """
     current_dir = Path(__file__)
-    return [p for p in current_dir.parents if p.parts[-1] == 'scripts'][0].parent
+    return [p for p in current_dir.parents if p.parts[-1] == 'spiritvision'][0].parent
 
 
 def get_data_dir():
@@ -36,7 +36,7 @@ def get_models_dir():
 
 
 def get_scripts_dir():
-    return os.path.join(get_root_dir(), "scripts")
+    return os.path.join(get_root_dir(), "src/spiritvision")
 
 
 def save_to_model_folder(learner, title):
