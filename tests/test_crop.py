@@ -3,7 +3,8 @@ import os
 import pytest
 
 import crop
-import helpers
+
+from spiritvision import *
 
 # TODO: more important Make a pyproject.toml
 
@@ -18,7 +19,7 @@ def test_path_is_not_an_image():
     returned parent folder is valid
     """
     with pytest.raises(TypeError):
-        test_path = os.path.join(helpers.get_scripts_dir(), "crop.py")
+        test_path = os.path.join(get_root_dir(), "crop.py")
         crop.get_folder_and_filename(test_path)
     return
 
@@ -38,7 +39,7 @@ def test_path_has_all_image_files():
     """
     Unit test to check if the path used in the crop_background function actually has any no image
     """
-    # TODO: test calling path returning functions from helpers.py, such as
+    # TODO: test calling path returning functions
     # get_root_dir()
     # get_data_dir()
     # get_raw_data_dir()
