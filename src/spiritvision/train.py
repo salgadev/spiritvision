@@ -1,5 +1,4 @@
-from fastai.vision.widgets import *
-from helpers import *
+from spiritvision import *
 import argparse
 
 

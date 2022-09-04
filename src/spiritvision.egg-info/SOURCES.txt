@@ -5,6 +5,7 @@ setup.py
 src/spiritvision.egg-info/PKG-INFO
 src/spiritvision.egg-info/SOURCES.txt
 src/spiritvision.egg-info/dependency_links.txt
+src/spiritvision.egg-info/entry_points.txt
 src/spiritvision.egg-info/not-zip-safe
 src/spiritvision.egg-info/requires.txt
 src/spiritvision.egg-info/top_level.txt

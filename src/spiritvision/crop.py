@@ -1,7 +1,7 @@
 import os
 
 import cv2
-from helpers import *
+from spiritvision import get_raw_data_dir, get_processed_data_dir
 
 processed_path = get_processed_data_dir()
 data_path = get_raw_data_dir()
