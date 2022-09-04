@@ -13,7 +13,9 @@ jobs:
       - name: Train model
         run: |
           # Install our package (spiritvision)  
-          pip install -e .
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python setup.py sdist
           for arch in 18 34; do
           # Call train command line interface 
             train --arch $arch
