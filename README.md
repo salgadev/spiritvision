@@ -7,7 +7,7 @@
 Multi-Class Image Classification of evaporated mezcal drops using fastai and PyTorch. Web App deployed
 on [Binder](https://mybinder.org/v2/gh/socd06/mezcal/HEAD?urlpath=%2Fvoila%2Frender%2Fapp.ipynb).
 
-<img src="graphics\design_black.png" alt="Agave plant icon" style="height: 480x; width:640px;"/>
+<img src="graphics\design_black.PNG" alt="Agave plant icon" style="height: 480x; width:640px;"/>
 
 ## Background
 
