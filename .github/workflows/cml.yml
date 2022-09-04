@@ -12,17 +12,18 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
-          # Your ML workflow goes here
-          pip install -r requirements.txt
-          for arch in 18 34 50; do
-            python scripts/train.py --arch $arch
+          # Install our package (spiritvision)  
+          pip install -e .
+          for arch in 18 34; do
+          # Call train command line interface 
+            train --arch $arch
             done
       - name: Write CML report
         env:
           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |                
           echo "## Data viz" >> report.md
-          for arch in 18 34 50; do
+          for arch in 18 34; do
             echo "### ResNet$arch" >> report.md
             cml-publish confusion_matrix_ResNet$arch.png --md >> report.md
           done
