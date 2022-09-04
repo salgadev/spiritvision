@@ -1,5 +1,4 @@
 opencv-python>4.6
-fastai>2.7
 
 [:python_version < "3.11"]
 importlib-metadata
