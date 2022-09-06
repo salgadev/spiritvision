@@ -12,9 +12,8 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
-          # Install our package (spiritvision)
-          python --version
-          pip install --upgrade pip setuptools wheel
+          # Install our package (spiritvision)          
+          pip install -r requirements.txt
           pip install -e .
           for arch in 18 34; do
           # Call train command line interface 
