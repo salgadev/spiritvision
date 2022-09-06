@@ -13,7 +13,6 @@ jobs:
       - name: Train model
         run: |
           # Install our package (spiritvision)          
-          pip install -r requirements.txt
           pip install -e .
           for arch in 18 34; do
           # Call train command line interface 
@@ -27,6 +26,5 @@ jobs:
           for arch in 18 34; do
             echo "### ResNet$arch" >> report.md
             cml-publish confusion_matrix_ResNet$arch.png --md >> report.md
-          done
-          
+          done          
           cml send-comment report.md
