@@ -8,12 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         #with:
-        #   python-version: '3.8'
+        #   python-version: '3.x'
       - uses: iterative/setup-cml@v1
       - name: Train model
         run: |
           # Install our package (spiritvision)
           python --version
+          pip install --upgrade pip setuptools wheel
           pip install -e .
           for arch in 18 34; do
           # Call train command line interface 
