@@ -1,27 +1,29 @@
 import os
-from fastai.interpret import ClassificationInterpretation
 import argparse
 
-import spiritvision as sv
+from fastai.interpret import ClassificationInterpretation
+
+from spiritvision.ai import make_data_loader, resnet_learner, save_confusion_matrix_plot
+from spiritvision import get_processed_data_dir, get_models_dir, get_root_dir
 
 
 def main(arguments):
     arch = int(arguments.arch)
 
     # batch size of 9 because of small dataset
-    data_loader = sv.make_data_loader(sv.get_processed_data_dir(), batch_size=9)
+    data_loader = make_data_loader(get_processed_data_dir(), batch_size=9)
 
-    learn = sv.resnet_learner(data_loader, arch)
+    learn = resnet_learner(data_loader, arch)
     learn.fine_tune(10)
 
-    save_path = os.path.join(sv.get_models_dir(), f"resnet{arch}_model")
+    save_path = os.path.join(get_models_dir(), f"resnet{arch}_model")
     learn.save(save_path)
 
     interp = ClassificationInterpretation.from_learner(learn)
     cm = interp.confusion_matrix()
-    cm_png_path = os.path.join(sv.get_root_dir(), f"confusion_matrix_ResNet{arch}.png")
+    cm_png_path = os.path.join(get_root_dir(), f"confusion_matrix_ResNet{arch}.png")
 
-    sv.save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
+    save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
 
 
 if __name__ == "__main__":

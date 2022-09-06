@@ -2,10 +2,11 @@ import argparse
 import os
 
 import torch
-from torch.utils.mobile_optimizer import optimize_for_mobile
 from torch import nn
+from torch.utils.mobile_optimizer import optimize_for_mobile
 
-from spiritvision import make_data_loader, resnet_learner, get_models_dir, get_data_dir
+from spiritvision import get_models_dir, get_data_dir
+from ai import resnet_learner, make_data_loader
 
 
 def main(arguments):
@@ -21,7 +22,7 @@ def main(arguments):
     quantized.eval()
 
     model_int8 = torch.quantization.quantize_dynamic(quantized,
-                                                     {torch.nn.Sequential},
+                                                     {nn.Sequential},
                                                      dtype=torch.qint8)
 
     dummy_input = torch.rand(1, 3, 224, 224)
