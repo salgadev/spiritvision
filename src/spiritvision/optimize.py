@@ -1,10 +1,9 @@
 import argparse
-
-from fastai.vision.widgets import *
-from fastbook import *
+import os
 
 import torch
 from torch.utils.mobile_optimizer import optimize_for_mobile
+from torch import nn
 
 from spiritvision import make_data_loader, resnet_learner, get_models_dir, get_data_dir
 

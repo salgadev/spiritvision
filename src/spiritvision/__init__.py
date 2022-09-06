@@ -4,13 +4,18 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+from fastai.data.block import DataBlock, CategoryBlock
+from fastai.data.transforms import get_image_files, RandomSplitter, parent_label, Normalize
 from fastai.metrics import accuracy
 from fastai.vision import models
+from fastai.vision.augment import RandomResizedCrop, aug_transforms
+from fastai.vision.core import imagenet_stats
+from fastai.vision.data import ImageBlock
 from fastai.vision.learner import vision_learner
 
-from fastai.vision.widgets import *
-from fastbook import *
 from sklearn.metrics import ConfusionMatrixDisplay
+
+import matplotlib as plt
 
 
 def get_root_dir():
