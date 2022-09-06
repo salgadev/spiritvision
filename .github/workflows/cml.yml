@@ -12,9 +12,12 @@ jobs:
       - uses: iterative/setup-cml@v1
       - name: Train model
         run: |                    
-          pip install -r requirements.txt          
+          # Install our package
+          python setup.py install
+          
+          # Call Command Line Interface
           for arch in 18 34; do           
-            python src/spiritvision/train.py --arch $arch
+            train --arch $arch
             done
       - name: Write CML report
         env:
