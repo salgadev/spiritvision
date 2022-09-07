@@ -40,5 +40,3 @@ def save_to_model_folder(learner, title):
     fname = f'{title}-{timestamp}'
     learner.save(os.path.join(get_models_dir(), fname))
     return fname
-
-
