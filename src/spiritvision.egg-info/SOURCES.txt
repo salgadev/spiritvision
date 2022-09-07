@@ -3,8 +3,10 @@ pyproject.toml
 setup.cfg
 setup.py
 src/spiritvision/__init__.py
+src/spiritvision/ai.py
 src/spiritvision/crop.py
 src/spiritvision/optimize.py
+src/spiritvision/py.typed
 src/spiritvision/train.py
 src/spiritvision/train_load_metrics.py
 src/spiritvision.egg-info/PKG-INFO

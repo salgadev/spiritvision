@@ -13,7 +13,7 @@ jobs:
       - name: Train model
         run: |                    
           # Install our package
-          python setup.py install
+          pip install .
           
           # Call Command Line Interface
           for arch in 18 34; do           

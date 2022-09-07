@@ -1,4 +1,4 @@
 opencv-python<5,>=4.6
 torch<2,>=1.12.1
-fastai<3,>=2.7.9
+fastai<3,>=2.7
 scikit-learn<2,>=1.0.2
