@@ -1,5 +1,6 @@
 import matplotlib as plt
-from fastai.data.block import DataBlock, CategoryBlock
+from fastbook import DataBlock, CategoryBlock
+
 from fastai.data.transforms import get_image_files, RandomSplitter, parent_label, Normalize
 from fastai.metrics import accuracy
 from fastai.vision import models
