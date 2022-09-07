@@ -7,8 +7,13 @@ import ai
 import spiritvision as sv
 
 
-def main(arguments):
-    arch = int(arguments.arch)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--arch', required=True, help="ResNet architecture. Choose from 18, 34 or 50")
+
+    args = parser.parse_args()
+
+    arch = int(args.arch)
 
     # batch size of 9 because of small dataset
     data_loader = ai.make_data_loader(sv.get_data_dir(), batch_size=9)
@@ -26,8 +31,4 @@ def main(arguments):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--arch', required=True, help="ResNet architecture. Choose from 18, 34 or 50")
-
-    args = parser.parse_args()
-    main(args)
+    main()

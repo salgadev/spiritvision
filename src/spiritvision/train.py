@@ -7,8 +7,13 @@ from spiritvision.ai import make_data_loader, resnet_learner, save_confusion_mat
 from spiritvision import get_processed_data_dir, get_models_dir, get_root_dir
 
 
-def main(arguments):
-    arch = int(arguments.arch)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--arch', required=True, help="ResNet architecture. Choose from 18, 34 or 50")
+
+    args = parser.parse_args()
+
+    arch = int(args.arch)
 
     # batch size of 9 because of small dataset
     data_loader = make_data_loader(get_processed_data_dir(), batch_size=9)
@@ -27,8 +32,4 @@ def main(arguments):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--arch', required=True, help="ResNet architecture. Choose from 18, 34 or 50")
-
-    args = parser.parse_args()
-    main(args)
+    main()

@@ -9,8 +9,13 @@ from spiritvision import get_models_dir, get_data_dir
 from ai import resnet_learner, make_data_loader
 
 
-def main(arguments):
-    arch = int(arguments.arch)
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--arch', required=True, help="ResNet architecture. Choose from 18, 34 or 50")
+
+    args = parser.parse_args()
+
+    arch = int(args.arch)
 
     data_loader = make_data_loader(get_data_dir(), batch_size=9)
     learn = resnet_learner(data_loader, arch)
@@ -36,8 +41,4 @@ def main(arguments):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--arch', required=True, help="ResNet architecture. Choose from 18, 34 or 50")
-
-    args = parser.parse_args()
-    main(args)
+    main()
