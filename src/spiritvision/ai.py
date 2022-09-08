@@ -1,4 +1,3 @@
-import matplotlib as plt
 from fastbook import DataBlock, CategoryBlock
 
 from fastai.data.transforms import get_image_files, RandomSplitter, parent_label, Normalize
@@ -9,6 +8,8 @@ from fastai.vision.core import imagenet_stats
 from fastai.vision.data import ImageBlock
 from fastai.vision.learner import vision_learner
 from sklearn.metrics import ConfusionMatrixDisplay
+
+import matplotlib.pyplot as plt
 
 
 def save_confusion_matrix_plot(confusion_matrix, labels, path):
