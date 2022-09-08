@@ -1,12 +1,9 @@
-from fastbook import DataBlock, CategoryBlock
+from fastbook import *
+from fastai.vision.widgets import *
 
-from fastai.data.transforms import get_image_files, RandomSplitter, parent_label, Normalize
 from fastai.metrics import accuracy
-from fastai.vision import models
-from fastai.vision.augment import RandomResizedCrop, aug_transforms
-from fastai.vision.core import imagenet_stats
-from fastai.vision.data import ImageBlock
 from fastai.vision.learner import vision_learner
+
 from sklearn.metrics import ConfusionMatrixDisplay
 
 import matplotlib.pyplot as plt
@@ -28,12 +25,20 @@ def save_confusion_matrix_plot(confusion_matrix, labels, path):
 
 
 def resnet_learner(data_loader, architecture=34):
-    if architecture == 34:
+    """
+    :param data_loader: output from make_data_loader function
+    :param architecture: ResNet18, 34, 50. ResNet34 is set by default if blank
+    :return: vision_learner AKA fastai learner object
+    """
+    print(f"Making a RestNet{architecture} Learner")
+    if architecture == 18:
+        return vision_learner(data_loader, models.resnet18, metrics=accuracy)
+    elif architecture == 34:
         return vision_learner(data_loader, models.resnet34, metrics=accuracy)
     elif architecture == 50:
         return vision_learner(data_loader, models.resnet50, metrics=accuracy)
     else:
-        return vision_learner(data_loader, models.resnet18, metrics=accuracy)
+        raise RuntimeError(f"Arch should only be 18, 34 or 50 for ResNet learners. You entered: {architecture}")
 
 
 def make_data_loader(data_path, batch_size):
