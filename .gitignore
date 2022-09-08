@@ -6,3 +6,7 @@ data_drafts/*
 notebooks/drafts/*
 /data_drafts/
 /notebooks/drafts/
+/src/spiritvision.egg-info
+/build/
+/.mypy_cache
+/.pytest_cache
