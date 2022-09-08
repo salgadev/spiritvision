@@ -10,3 +10,4 @@ notebooks/drafts/*
 build/*
 /.mypy_cache
 /.pytest_cache
+/confusion*
