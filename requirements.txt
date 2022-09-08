@@ -6,6 +6,7 @@ fastai>=2.7
 scikit-learn~=1.0.2
 jupyter
 opencv-python>=4.6
+matplotlib>3.5
 flake8>=5
 pytest>7
 mypy>0.9
