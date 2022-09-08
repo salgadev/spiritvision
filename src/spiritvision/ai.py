@@ -42,11 +42,14 @@ def resnet_learner(data_loader, architecture=34):
 
 
 def make_data_loader(data_path, batch_size):
-    block = DataBlock(blocks=(ImageBlock, CategoryBlock),
-                      get_items=get_image_files,
-                      splitter=RandomSplitter(0.2),
-                      get_y=parent_label,
-                      item_tfms=RandomResizedCrop(460),
-                      batch_tfms=[*aug_transforms(size=224, max_warp=0), Normalize.from_stats(*imagenet_stats)])
+    if os.path.exists(data_path):
+        block = DataBlock(blocks=(ImageBlock, CategoryBlock),
+                          get_items=get_image_files,
+                          splitter=RandomSplitter(0.2),
+                          get_y=parent_label,
+                          item_tfms=RandomResizedCrop(460),
+                          batch_tfms=[*aug_transforms(size=224, max_warp=0), Normalize.from_stats(*imagenet_stats)])
 
-    return block.dataloaders(data_path, bs=batch_size)
+        return block.dataloaders(data_path, bs=batch_size)
+    else:
+        raise RuntimeError(f"{data_path} does not exist")
