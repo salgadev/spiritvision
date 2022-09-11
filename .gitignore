@@ -11,3 +11,4 @@ notebooks/drafts/*
 /.mypy_cache
 /.pytest_cache
 /confusion*
+/data
