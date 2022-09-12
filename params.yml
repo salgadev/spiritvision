@@ -9,6 +9,8 @@ train:
   batch_size: 9
   epochs: 10
   models_path: 'models'
+  # scripts\notebooks should save concatenating {arch} at the end (pytorch adds .pth)
 
 reports:
-  confusion_matrix: 'reports\confusion_matrix.png'
+  confusion_matrix: 'reports\confusion_matrix'
+  # scripts\notebooks should save concatenating {arch}.png at the end
