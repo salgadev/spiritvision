@@ -13,7 +13,7 @@ jobs:
       - name: Train model
         run: |                    
           # Install our package
-          pip install -r requirements.txt
+          pip install .
           
           # Call Command Line Interface
           for arch in 18 34; do           
