@@ -1,0 +1,14 @@
+data:
+  processed: 'data/processed'
+
+data_split:
+  valid_size: 0.2
+
+train:
+  arch: 18
+  batch_size: 9
+  epochs: 10
+  models_path: 'models'
+
+reports:
+  confusion_matrix: 'reports\confusion_matrix.png'
