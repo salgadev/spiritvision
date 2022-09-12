@@ -13,11 +13,11 @@ jobs:
       - name: Train model
         run: |                    
           # Install our package
-          pip install .
+          pip install -r requirements.txt
           
           # Call Command Line Interface
           for arch in 18 34; do           
-            train --arch $arch
+            python src/spiritvision/train.py --arch $arch
             done
       - name: Write CML report
         env:
