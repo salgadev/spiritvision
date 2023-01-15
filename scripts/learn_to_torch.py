@@ -1,3 +1,6 @@
+"""
+Convert learner object into pytorch state dictionary
+"""
 from fastai.vision.widgets import *
 from helpers import *
 
@@ -10,16 +13,17 @@ def main(arguments):
     # batch size of 9 because of small dataset
     data_loader = make_data_loader(get_data_dir(), batch_size=9)
 
-    learn = resnet_learner(data_loader, arch)
+    learn = get_resnet_model(data_loader, arch)
 
     load_path = os.path.join(get_models_dir(), f"resnet{arch}_model")
     learn.load(load_path)
 
-    interp = ClassificationInterpretation.from_learner(learn)
-    cm = interp.confusion_matrix()
-    cm_png_path = os.path.join(get_root_dir(), "confusion_matrix.png")
+    model = learn.model
 
-    save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
+    model.eval()
+
+    # Save the state dictionary to a file
+    torch.save(model.state_dict(), f'{load_path}_state_dict.pth')
 
 
 if __name__ == "__main__":

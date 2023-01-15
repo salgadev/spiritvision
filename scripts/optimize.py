@@ -2,10 +2,11 @@ import argparse
 import os
 
 import torch
+import torchvision
 from torch import nn
 from torch.utils.mobile_optimizer import optimize_for_mobile
 
-from helpers import get_models_dir
+from helpers import get_models_dir, make_data_loader, get_data_dir, get_resnet_model
 
 
 def main():
@@ -22,14 +23,25 @@ def main():
     arch = int(args.arch)
     platform = args.platform
 
-    # data_loader = make_data_loader(get_data_dir(), batch_size=9)
-    # learn = resnet_learner(data_loader, arch)
+    data_loader = make_data_loader(get_data_dir(), batch_size=9)
+    learn = get_resnet_model(data_loader, arch)
 
-    # learn.load(load_path)
     load_path = os.path.join(get_models_dir(), f"resnet{arch}_model.pth")
+
+    learn.load(load_path)
     original_model_name = load_path.split("\\")[-1]
 
-    model = torch.load(load_path)
+    # Load the model's parameters from the saved file
+    params = torch.load(load_path)
+
+    # Instantiate the model architecture
+    model = torchvision.models.resnet18()
+
+    # Load the parameters into the model
+    model.load_state_dict(params)
+
+    # Move the model to the CPU
+    model.to("cpu")
 
     if platform.lower() == 'm':
 

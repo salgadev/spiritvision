@@ -5,3 +5,8 @@ fastbook~=0.0.28
 fastai~=2.7.9
 scikit-learn~=1.0.2
 jupyter
+matplotlib~=3.5.3
+opencv-python~=4.6.0.66
+torch~=1.12.1
+torchvision~=0.13.1
+numpy~=1.23.2
