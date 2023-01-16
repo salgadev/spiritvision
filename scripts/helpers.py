@@ -1,3 +1,6 @@
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.metrics import confusion_matrix
+
 import os
 from datetime import datetime
 from pathlib import Path
@@ -7,8 +10,7 @@ import numpy as np
 import torch
 import torch.utils.data
 import torchvision
-from sklearn.metrics import ConfusionMatrixDisplay
-from sklearn.metrics import confusion_matrix
+
 from torchvision import transforms
 
 # probably should stay like this
