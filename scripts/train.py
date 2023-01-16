@@ -2,6 +2,7 @@ import argparse
 
 from torchvision import models
 
+
 from helpers import *
 
 
@@ -16,19 +17,20 @@ def main():
     # batch size of 9 because of small dataset
     data_loader = make_data_loader(get_processed_data_dir(), batch_size=9)
 
-    # TRAINING LOOP
-    if arch == 34:
-        model = models.resnet34(pretrained=True)
+    # Instantiate the model architecture
+    if arch == 18:
+        model = models.resnet18(models.ResNet18_Weights.DEFAULT)
+    elif arch == 34:
+        model = models.resnet34(models.ResNet34_Weights.DEFAULT)
     elif arch == 50:
-        model = models.resnet50(pretrained=True)
+        model = models.resnet50(models.ResNet50_Weights.DEFAULT)
     else:
-        model = models.resnet18(pretrained=True)
+        raise RuntimeError(f'Choose a valid ResNet architecture.')
 
     model = model.to(device)
 
     criterion = torch.nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
-    # model.fine_tune(10)
 
     for epoch in range(10):
         model.train()
@@ -49,23 +51,8 @@ def main():
     torch.save(model.state_dict(), model_path)
     print(f"Model state dictionary saved to {model_path}.")
 
-    # previous way
-    #  save_path = os.path.join(get_models_dir(), f"resnet{arch}_model")
-    # model.save(save_path)
-
-    # TODO: plot with my "custom class"
-    """
-    interp = ClassificationInterpretation(model=,
-                                          test_data_loader=data_loader,
-                                          class_names=data_loader.vocab)
-    interp.plot_confusion_matrix()
-
-    # interp = ClassificationInterpretation.from_learner(model)
-    # cm = interp.confusion_matrix()
-    # cm_png_path = os.path.join(get_root_dir(), f"confusion_matrix_ResNet{arch}.png")
-
-    # save_confusion_matrix_plot(confusion_matrix=cm, labels=data_loader.vocab, path=cm_png_path)
-    """
+    interp = ClassificationInterpretation(model, data_loader)
+    interp.save_confusion_matrix_plot(model_path)
 
 
 if __name__ == "__main__":
