@@ -2,13 +2,24 @@ import os
 from datetime import datetime
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+
+from fastai.data.block import CategoryBlock, DataBlock
+from fastai.data.transforms import get_image_files, RandomSplitter, parent_label, Normalize
 from fastai.metrics import accuracy
-from fastai.vision import models
+from fastai.vision.augment import RandomResizedCrop, aug_transforms
+from fastai.vision.data import ImageBlock
 from fastai.vision.learner import vision_learner
 
-from fastai.vision.widgets import *
+# Only uncomment for debugging, uses a lot of memory
+# from fastai.vision.widgets import *
+
 from fastbook import *
 from sklearn.metrics import ConfusionMatrixDisplay
+from torchvision.models import resnet18, resnet34, resnet50
+
+# from fastai
+imagenet_stats = ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 
 
 def get_root_dir():
@@ -55,13 +66,15 @@ def make_data_loader(data_path, batch_size):
     return block.dataloaders(data_path, bs=batch_size)
 
 
-def resnet_learner(data_loader, architecture=34):
-    if architecture == 34:
-        return vision_learner(data_loader, models.resnet34, metrics=accuracy)
+def resnet_learner(data_loader, architecture=18):
+    if architecture == 18:
+        return vision_learner(data_loader, resnet18, metrics=accuracy)
+    elif architecture == 34:
+        return vision_learner(data_loader, resnet34, metrics=accuracy)
     elif architecture == 50:
-        return vision_learner(data_loader, models.resnet50, metrics=accuracy)
+        return vision_learner(data_loader, resnet50, metrics=accuracy)
     else:
-        return vision_learner(data_loader, models.resnet18, metrics=accuracy)
+        raise RuntimeError(f'Select a compatible ResNet Architecture: 18, 34 or 50')
 
 
 def save_confusion_matrix_plot(confusion_matrix, labels, path):
@@ -77,3 +90,5 @@ def save_confusion_matrix_plot(confusion_matrix, labels, path):
 
     plt.imshow(confusion_matrix, interpolation='nearest', cmap="Blues")
     plt.savefig(path, dpi=120)
+
+    print(f'Saved confusion matrix to {path}')
