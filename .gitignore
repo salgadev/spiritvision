@@ -6,3 +6,4 @@ data_drafts/*
 notebooks/drafts/*
 /data_drafts/
 /notebooks/drafts/
+/data/raw/*
