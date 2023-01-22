@@ -34,6 +34,10 @@ def get_data_dir():
     return os.path.join(get_root_dir(), "data")
 
 
+def get_raw_data_dir():
+    return os.path.join(get_root_dir(), "data", "raw")
+
+
 def get_processed_data_dir():
     return os.path.join(get_root_dir(), "data", "processed")
 
