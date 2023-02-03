@@ -33,7 +33,7 @@ def crop_background(path):
     _, thresholded = cv2.threshold(grayscale, 0, 255, cv2.THRESH_OTSU)
     cv2.imwrite("otsu.png", thresholded)
     x, y, w, h = cv2.boundingRect(thresholded)  # bounding box
-    foreground = img[y : y + h, x : x + w]
+    foreground = img[y: y + h, x: x + w]
 
     label_folder = f"{processed_data_path}\\{target_folder}"
     os.makedirs(label_folder, exist_ok=True)

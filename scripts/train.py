@@ -13,7 +13,8 @@ def main():
     arch = int(args.arch)
 
     # batch size of 9 because of small dataset
-    data_loader = make_data_loader(get_processed_data_dir(), batch_size=9)
+    data_loader = make_data_loader(get_processed_data_dir(),
+                                   batch_size=64)
 
     learn = resnet_learner(data_loader, arch)
     learn.fine_tune(10)
