@@ -70,7 +70,7 @@ def make_data_loader(data_path, batch_size):
                       item_tfms=item_transforms,
                       batch_tfms=[
                           # 70% with mult=2
-                          *aug_transforms(size=224, mult=3, max_warp=0),
+                          *aug_transforms(size=224, mult=2, max_warp=0),
                           Normalize.from_stats(*imagenet_stats)])
 
     return block.dataloaders(data_path, bs=batch_size)
