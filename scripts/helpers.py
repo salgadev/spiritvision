@@ -34,12 +34,16 @@ def get_data_dir():
     return os.path.join(get_root_dir(), "data")
 
 
+def get_test_data_dir():
+    return os.path.join(get_data_dir(), "test")
+
+
 def get_raw_data_dir():
-    return os.path.join(get_root_dir(), "data", "raw")
+    return os.path.join(get_data_dir(), "raw")
 
 
 def get_processed_data_dir():
-    return os.path.join(get_root_dir(), "data", "processed")
+    return os.path.join(get_data_dir(), "processed")
 
 
 def get_models_dir():

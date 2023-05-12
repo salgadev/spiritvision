@@ -53,8 +53,8 @@ Python, fastai, PyTorch, scikit-learn, Voilà
 
 ## torchserve
 Archive model like so
-```torch-model-archiver --model-name mezcalvision --version 0.1 --model-file .\model.py --serialized-file .\models\resnet_50_2023May08_0614PM_traced.pt --handler image_classifier --extra-files ./index_t
-o_name.json
+```torch-model-archiver --model-name mezcalvision --version 0.1 --model-file .\model.py --serialized-file .\models\resnet_50_2023May08_0614PM.pt --handler image_classifier --extra-files ./index_to_name.
+json
 ```
 
 Deploy with the following command:
