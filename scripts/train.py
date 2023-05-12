@@ -12,7 +12,6 @@ def main():
     args = parser.parse_args()
     arch = int(args.arch)
 
-    # batch size of 9 because of small dataset
     data_loader = make_data_loader(get_processed_data_dir(),
                                    batch_size=64)
 
