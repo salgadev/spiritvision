@@ -51,5 +51,14 @@ Python, fastai, PyTorch, scikit-learn, Voilà
 
 - [Revisión del Agave y el Mezcal](https://www.redalyc.org/journal/776/77645907016/)
 
+## torchserve
+Archive model like so
+```torch-model-archiver --model-name mezcalvision --version 0.1 --model-file .\model.py --serialized-file .\models\resnet_50_2023May08_0614PM.pt --handler image_classifier --extra-files ./index_to_name.
+json
+```
 
+Deploy with the following command:
+```
+ torchserve --start --model-store model_store --models mezcalvision=mezcalvision.mar --ncs
+```
 
