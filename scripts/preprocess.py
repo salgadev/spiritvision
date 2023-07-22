@@ -1,10 +1,18 @@
-
+# standard imports
+import logging
 import os
 import re
-import numpy as np
-import cv2
 
+# third-party imports
+import cv2
+import numpy as np
+
+# pylint: disable=line-too-long:
 from scripts.helpers import get_data_dir, get_raw_data_dir, get_processed_data_dir, get_interim_data_dir
+# pylint: enable=line-too-long
+
+log = logging.getLogger(__name__)
+
 
 data_path = get_data_dir()
 raw_data_path = get_raw_data_dir()
@@ -16,11 +24,10 @@ def check_utf8(filename):
     pattern = re.compile(r"[^\x00-\x7F]+")
     match = pattern.search(filename)
     if match:
-        print(f"The string contains non-UTF-8 characters: {match.group()}")
+        log.debug(f"The string contains non-UTF-8 characters: {match.group()}")
         new_filename = re.sub(r"[^\x00-\x7F]+", "", filename)
         return new_filename
-    else:
-        return filename
+    return filename
 
 
 def save_to_interim_data_dir(filename, image_instance):
@@ -75,10 +82,10 @@ def crop_background(path):
     for saving_path, image in {class_path: foreground,
                                background_path: background}.items():
         if not os.path.isfile(saving_path):
-            print(f"{saving_path} Saved!")
+            log.debug(f"{saving_path} Saved!")
             cv2.imwrite(saving_path, image)
         else:
-            print(f"{saving_path} already exists!")
+            log.warning(f"{class_path} already exists!")
 
 
 def main():
@@ -94,7 +101,7 @@ def main():
             if utf8_fname is not fname:
                 renamed_filepath = os.path.join(label_path, utf8_fname)
                 os.rename(original_filepath, renamed_filepath)
-                print(f"File {original_filepath} was renamed to {renamed_filepath}")
+                log.warning(f"File {original_filepath} was renamed to {renamed_filepath}")
                 crop_background(renamed_filepath)
             else:
                 crop_background(original_filepath)

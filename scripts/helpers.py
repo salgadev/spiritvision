@@ -37,6 +37,7 @@ def get_data_dir():
 def get_test_data_dir():
     return os.path.join(get_data_dir(), "test")
 
+
 def get_interim_data_dir():
     return os.path.join(get_data_dir(), "interim")
 

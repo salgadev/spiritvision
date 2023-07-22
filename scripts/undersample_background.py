@@ -1,8 +1,11 @@
+import logging
 import os
 import random
 import statistics
 
 from scripts.helpers import get_background_data_dir, get_processed_data_dir
+
+log = logging.getLogger(__name__)
 
 
 def undersample_class(class_path):
@@ -22,9 +25,9 @@ def undersample_class(class_path):
         os.remove(os.path.join(class_path, background_files[i]))
 
     # verify that each class has the same number of samples
-    for c in classes:
-        count = len(os.listdir(os.path.join(dataset_path, c)))
-        print(f"{c}: {count} samples")
+    for class_sample in classes:
+        count = len(os.listdir(os.path.join(dataset_path, class_sample)))
+        log.debug(f"{class_sample}: {count} samples")
 
 
 if __name__ == "__main__":
