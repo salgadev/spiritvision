@@ -13,7 +13,7 @@ def undersample_class(class_path):
     # determine the target number of samples for the background class
     dataset_path = os.path.dirname(class_path)
     counts = [len(os.listdir(os.path.join(dataset_path, c))) for c in classes if c != "background"]
-    target_count = int(statistics.median(counts))
+    target_count = int(statistics.mean(counts))
 
     # delete the excess files from the background class
     background_files = os.listdir(class_path)
