@@ -10,7 +10,7 @@ def rename_data_files(dataset_path, target_path):
         for index, file_name in enumerate(files, start=1):
             # Create the new file name with the index
             _, extension = os.path.splitext(file_name)
-            new_file_name = str(index) + extension
+            new_file_name = f"{index:04}{extension}"  # 0001.jpg, 0002.jpg, ...
 
             # Create the new target folder path by replacing the dataset path
             # with the target path and preserving the folder structure
