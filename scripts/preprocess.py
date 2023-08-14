@@ -2,6 +2,7 @@
 import logging
 import os
 import re
+import shutil
 
 # third-party imports
 import cv2
@@ -45,6 +46,9 @@ def crop_background(path):
     for folder in [label_folder, background_folder]:
         os.makedirs(folder, exist_ok=True)
 
+    class_path = os.path.join(label_folder, f"cropped-{fname}")
+    background_path = os.path.join(background_folder, f"background-{fname}")
+
     img = cv2.imread(path)
 
     # Get image median
@@ -64,28 +68,35 @@ def crop_background(path):
     # Find the coordinates of the edges
     (rows, cols) = np.where(edges == 255)
 
-    # Get the minimum and maximum x and y coordinates
-    x_min, x_max = min(cols), max(cols)
-    y_min, y_max = min(rows), max(rows)
+    try:
+        # Get the minimum and maximum x and y coordinates
+        x_min, x_max = min(cols), max(cols)
+        y_min, y_max = min(rows), max(rows)
 
-    # Crop the image
-    foreground = img[y_min:y_max, x_min:x_max]
-    background = np.full(img.shape, median_intensity, dtype=np.uint8)
-    background[:y_min, :] = img[:y_min, :]
-    background[y_max:, :] = img[y_max:, :]
-    background[:, :x_min] = img[:, :x_min]
-    background[:, x_max:] = img[:, x_max:]
+        # Crop the image
+        foreground = img[y_min:y_max, x_min:x_max]
+        background = np.full(img.shape, median_intensity, dtype=np.uint8)
+        background[:y_min, :] = img[:y_min, :]
+        background[y_max:, :] = img[y_max:, :]
+        background[:, :x_min] = img[:, :x_min]
+        background[:, x_max:] = img[:, x_max:]
 
-    class_path = os.path.join(label_folder, f"cropped-{fname}")
-    background_path = os.path.join(background_folder, f"background-{fname}")
+        for saving_path, image in {class_path: foreground,
+                                   background_path: background}.items():
+            if os.path.isfile(saving_path):
+                log.warning(f"{class_path} already exists!")
+            else:
+                if image.shape[0] >= 500 or image.shape[1] >= 500:
+                    log.debug(f"{saving_path} Saved!")
+                    cv2.imwrite(saving_path, image)
+                else:
+                    log.warning(f'{path} image too small = {image.shape}\n'
+                                f'Should at least be 500 x 500. Copying as is.')
+                    shutil.copy(path, class_path)
 
-    for saving_path, image in {class_path: foreground,
-                               background_path: background}.items():
-        if not os.path.isfile(saving_path):
-            log.debug(f"{saving_path} Saved!")
-            cv2.imwrite(saving_path, image)
-        else:
-            log.warning(f"{class_path} already exists!")
+    except Exception as exc:
+        log.error(f'{exc} Error while cropping {path}. Copying as is.')
+        shutil.copy(path, class_path)
 
 
 def main():
