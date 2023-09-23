@@ -1,13 +1,9 @@
-# mezcal
+# SpiritVision 
 
-[![train-resnet18](https://github.com/socd06/mezcal/actions/workflows/cml.yml/badge.svg)](https://github.com/socd06/mezcal/actions/workflows/cml.yml)
+Multi-Class Image Classification of evaporated mezcal drops using OpenCv, PyTorch and fastai. Web App deployed
+on [HuggingFace Spaces](https://huggingface.co/spaces/salgadev/spiritvision-demo).
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/socd06/mezcal/HEAD?urlpath=%2Fvoila%2Frender%2Fapp.ipynb)
-
-Multi-Class Image Classification of evaporated mezcal drops using fastai and PyTorch. Web App deployed
-on [Binder](https://mybinder.org/v2/gh/socd06/mezcal/HEAD?urlpath=%2Fvoila%2Frender%2Fapp.ipynb).
-
-<img src="icon.png" alt="Agave plant icon" style="height: 240px; width:300px;"/>
+<img src="logo23.png" alt="Agave plant icon" style="height: 240px; width:300px;"/>
 
 ## Background
 
@@ -24,18 +20,20 @@ mezcal types using image classification models trained in evaporated mezcal drop
 
 ## Technologies used
 
-Python, fastai, PyTorch, scikit-learn, Voilà
+- [OpenCV](https://opencv.org/)
+- [PyTorch](https://pytorch.org/)
+- [fastai](https://www.fast.ai/) 
 
-## Getting Started
+## Local Setup
 
 1. Get and install [Python](https://www.python.org/downloads/) and an IDE of your choice
    (e.g. [PyCharm](https://www.jetbrains.com/pycharm/download/) or [Spyder](https://www.spyder-ide.org/))
 2. Make a virtual environment -- *will depend on your IDE* -- (Optional)
-3. Install dependencies using the terminal
+3. Install dependencies, for example, using the terminal
     ```
     pip install -r requirements.txt
     ```
-4. Try out the Jupyter Notebooks and/or the training script
+4. Try the Notebooks directory and/or the training script
 
 ## Collaborating
 
@@ -47,18 +45,7 @@ Python, fastai, PyTorch, scikit-learn, Voilà
 - Contact [Carlos](mailto:csalgado@uwo.ca) or [Angel](mailto:Angel.reyes@cimat.mx) if you would like to be invited to
   the Discord chat
 
-## References:
-
-- [Revisión del Agave y el Mezcal](https://www.redalyc.org/journal/776/77645907016/)
-
-## torchserve
-Archive model like so
-```torch-model-archiver --model-name mezcalvision --version 0.1 --model-file .\model.py --serialized-file .\models\resnet_50_2023May08_0614PM.pt --handler image_classifier --extra-files ./index_to_name.
-json
-```
-
-Deploy with the following command:
-```
- torchserve --start --model-store model_store --models mezcalvision=mezcalvision.mar --ncs
-```
-
+## References
+- [NOM-070-SCFI-2016, Bebidas alcohólicas-Mezcal-Especificaciones](https://dof.gob.mx/nota_detalle.php?codigo=5472787&fecha=23/02/2017#gsc.tab=0)
+- [Revisión del Agave y el Mezcal](https://www.redalyc.org/journal/776/77645907016/) 
+- [VOLATILE COMPONENTS IN MEZCAL - Revista Mexicana de Ingeniería Química](https://www.redalyc.org/pdf/620/62060106.pdf)
