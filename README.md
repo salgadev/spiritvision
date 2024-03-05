@@ -1,13 +1,13 @@
 # SpiritVision 
-Multi-Class Image Classification of evaporated mezcal drops using OpenCv, PyTorch and fastai. Web App deployed on [HuggingFace Spaces](https://huggingface.co/spaces/salgadev/spiritvision-demo).
+AI-based multi-class image classification tool focused on improving Mezcal production quality control and ensuring compliance with industry regulations. Built using OpenCV, PyTorch, and FastAI, SpiritVision uses images of evaporated mezcal drops captured under a microscope to quickly identify excess methanol levels and recognize different mezcal strains. Web App deployed on [HuggingFace Spaces](https://huggingface.co/spaces/salgadev/spiritvision-demo).
 
 <img src="img/demo.gif" alt="HuggingFace Web App"/>
 
 ## Background
-Mezcal is a spirit originally produced in Mexico. There are many varieties of mezcal depending on the agave plant used its production, each with its own flavour and intricacies. For example, *espadín* has an earthy flavor as opposed to *tobalá*, which has subtle smoky notes.
+Mezcal has a very strict and exhaustive quality control authentication and certification method in which traditionally, gas chromatography and mass spectrometry techniques analyze volatile compounds in order to recognize methanol spikes. Both these approaches take days to even weeks, are expensive, and unfeasible for widespread adoption among small-scale producers.
 
-## The Challenge
-Mezcal has a very strict and exhaustive quality control authentication and certification method in which sampled drops of mezcal are chemically analyzed via mass spectrophotometry. In this project, we attempt to authenticate different mezcal types using image classification models trained in evaporated mezcal drops seen under a microscope.
+## Objective
+Developing an accesible deep learning model capable of detecting spikes in methanol concentration in mezcal by training ResNet models using transfer learning and sampled mezcal droplets inspected under a microscope. The application can facilitate routine quality verifications while reducing operational costs and improving competitiveness of small to medium producers. 
 
 ## Technologies used
 - [OpenCV](https://opencv.org/)
